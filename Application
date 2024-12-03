@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Déroulant</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <button id="menuButton">☰</button>
+        <h1>Sports & Tournois</h1>
+    </header>
+    <aside id="dropdownMenu" class="hidden">
+        <ul>
+            <li><a href="#">Football</a></li>
+            <li><a href="#">Basketball</a></li>
+            <li><a href="#">Tennis</a></li>
+            <li><a href="#">Rugby</a></li>
+            <li><a href="#">Natation</a></li>
+        </ul>
+        <div class="checkbox-container">
+            <input type="checkbox" id="tournamentsCheckbox">
+            <label for="tournamentsCheckbox">Afficher les tournois</label>
+        </div>
+    </aside>
+    <main>
+        <section id="tournamentList" class="hidden">
+            <h2>Liste des Tournois</h2>
+            <ul>
+                <li>Tournoi A</li>
+                <li>Tournoi B</li>
+                <li>Tournoi C</li>
+            </ul>
+        </section>
+    </main>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
+/* styles/main.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+header h1 {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+
+#menuButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#dropdownMenu {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+#dropdownMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+}
+
+#dropdownMenu ul li {
+    margin: 0.5rem 0;
+}
+
+#dropdownMenu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.checkbox-container {
+    margin-top: 1rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+#tournamentList {
+    margin-top: 2rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+#tournamentList h2 {
+    margin-top: 0;
+}
+// scripts/app.js
+document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('menuButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const tournamentsCheckbox = document.getElementById('tournamentsCheckbox');
+    const tournamentList = document.getElementById('tournamentList');
+
+    // Toggle menu visibility
+    menuButton.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+    });
+
+    // Toggle tournament list visibility
+    tournamentsCheckbox.addEventListener('change', () => {
+        if (tournamentsCheckbox.checked) {
+            tournamentList.classList.remove('hidden');
+        } else {
+            tournamentList.classList.add('hidden');
+        }
+    });
+});
